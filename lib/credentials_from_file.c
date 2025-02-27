@@ -249,7 +249,7 @@ bool read_normal_device_credentials(const char *dev_cred_file,
 		return true;
 	}
 
-	LOG(LOG_DEBUG, "Reading DeviceCredential blob of length %" PRIu64 "\n",
+	LOG(LOG_DEBUG, "Reading DeviceCredential blob of length %" PRIu32 "\n",
 	    dev_cred_len);
 
 	fdor = fdo_alloc(sizeof(fdor_t));

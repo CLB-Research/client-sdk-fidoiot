@@ -243,7 +243,7 @@ int fdo_sim_set_osi_sig(size_t sigValue)
 {
 	int result = FDO_SI_INTERNAL_ERROR;
 
-	if (!fdor_unsigned_int(fdor, &sigValue)) {
+	if (!fdor_unsigned_int(fdor, (uint64_t*)&sigValue)) {
 		LOG(LOG_ERROR, "Module fdo.command - Failed to process "
 			       "fdo.command:sig\n");
 		goto end;
@@ -257,7 +257,7 @@ int fdo_sim_set_osi_sig(size_t sigValue)
 		goto end;
 	}
 	LOG(LOG_INFO,
-	    "Module fdo.command:sig - Process Signal received : %ld\n",
+	    "Module fdo.command:sig - Process Signal received : %" PRIu32 "\n",
 	    sigValue);
 
 	if (sigValue == 9 || sigValue == 15) {

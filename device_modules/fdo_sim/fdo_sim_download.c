@@ -214,7 +214,7 @@ int fdo_sim_set_osi_length(size_t bin_len)
 {
 	int result = FDO_SI_INTERNAL_ERROR;
 
-	if (!fdor_unsigned_int(fdor, &bin_len)) {
+	if (!fdor_unsigned_int(fdor, (uint64_t*)&bin_len)) {
 		LOG(LOG_ERROR, "Module fdo.download - Failed to process "
 			       "fdo.download:length\n");
 		goto end;
@@ -222,7 +222,7 @@ int fdo_sim_set_osi_length(size_t bin_len)
 
 	expected_len = bin_len;
 
-	LOG(LOG_INFO, "Module fdo.download - expected file length %ld\n",
+	LOG(LOG_INFO, "Module fdo.download - expected file length %" PRIu32 "\n",
 	    expected_len);
 	result = FDO_SI_SUCCESS;
 end:
