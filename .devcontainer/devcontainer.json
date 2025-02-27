@@ -1,0 +1,21 @@
+{
+	"name": "wamm_sdk_devcontainer",
+	"image": "clb/wamm_sdk:latest",
+	"containerEnv": {
+		"OPENSSL3_ROOT": "/usr",
+		"CURL_ROOT": "/usr",
+		"SAFESTRING_ROOT": "/workspaces/client-sdk-fidoiot/deps/safestringlib",
+		"TINYCBOR_ROOT": "/workspaces/client-sdk-fidoiot/deps/tinycbor"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cmake-tools",
+				"ms-vscode.cpptools",
+				"webfreak.debug",
+				"donjayamanne.githistory",
+				"eamodio.gitlens"
+			]
+		}
+	}
+}
