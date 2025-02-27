@@ -148,3 +148,5 @@ outdir/
 *.dat.h
 *.bin.h
 *.mp.h
+
+deps
