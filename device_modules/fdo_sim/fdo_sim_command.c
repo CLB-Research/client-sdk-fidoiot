@@ -257,7 +257,7 @@ int fdo_sim_set_osi_sig(size_t sigValue)
 		goto end;
 	}
 	LOG(LOG_INFO,
-	    "Module fdo.command:sig - Process Signal received : %" PRIu32 "\n",
+	    "Module fdo.command:sig - Process Signal received : %d\n",
 	    sigValue);
 
 	if (sigValue == 9 || sigValue == 15) {

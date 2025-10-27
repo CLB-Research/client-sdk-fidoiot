@@ -8,7 +8,7 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include "cbor.h"
+#include <tinycbor/cbor.h>
 
 static inline int INT2HEX(int i)
 {

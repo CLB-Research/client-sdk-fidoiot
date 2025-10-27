@@ -607,7 +607,7 @@ bool read_tpm_device_credentials(uint32_t nv, fdo_dev_cred_t *our_dev_cred)
 		return true;
 	}
 
-	LOG(LOG_DEBUG, "Reading DeviceCredential of length %" PRIu64 "\n",
+	LOG(LOG_DEBUG, "Reading DeviceCredential of length %" PRIu32 "\n",
 	    dev_cred_len);
 
 	fdor = fdo_alloc(sizeof(fdor_t));

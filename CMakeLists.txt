@@ -125,7 +125,7 @@ if(${TARGET_OS} MATCHES linux)
 
   client_sdk_ld_options(
     -L$ENV{SAFESTRING_ROOT}/
-    -l:libsafestring.a
+    -l:libsafestring_static.a
     -L$ENV{TINYCBOR_ROOT}/lib/
     -l:libtinycbor.a
     -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now
