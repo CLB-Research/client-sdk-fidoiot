@@ -77,13 +77,34 @@ int32_t msg66(fdo_prot_t *ps)
 		if (resale_supported) {
 			LOG(LOG_DEBUG, "TO2.DeviceServiceInfoReady: "
 				       "*****Resale triggered.*****\n");
-			/* Generate new HMAC secret for OV header validation */
-			if (0 != fdo_generate_ov_replacement_hmac_key()) {
-				LOG(LOG_ERROR,
-				    "TO2.DeviceServiceInfoReady: Failed to "
-				    "refresh OV HMAC Key\n");
-				goto err;
-			}
+			/*
+			 * The following code block is commented out since that raises a problem when using TPM. The protocol describes that a
+			 * new HMAC key is to be generated for the resale scenario, but then it is no longer possible to restart the onboarding
+			 * process. If a new key is generated here, the validation will fail next time onboarding is attempted. Examine the
+			 * following call stack:
+			 * 
+			 * main()
+			 *   fdo_sdk_init()
+			 *     load_credential()
+			 *       read_tpm_credentials()
+			 *         fdo_tpm_read_nv()
+			 *           fdo_tpm_get_hmac()
+			 * 
+			 * In the last function, the HMAC key is used to calculate the HMAC over the ownership voucher header. If the key has
+			 * been changed in msg66, the calculated HMAC will not match the stored HMAC in the ownership voucher.
+			 * 
+			 * The FDO specification describes clearly that on message 70 (TO2.Done), the new credentials are to be stored. This
+			 * includes the new HMAC key. Unfortunately, the new HMAC key is needed already in message 66 to calculate the HMAC over
+			 * the ownership voucher header. Therefore, the only viable solution is to not generate a new HMAC key in message 66.
+			 * In the case of not using TPM, the code works fine since the HMAC key is stored in memory and replaced in msg70.
+			 */
+			// /* Generate new HMAC secret for OV header validation */
+			// if (0 != fdo_generate_ov_replacement_hmac_key()) {
+			// 	LOG(LOG_ERROR,
+			// 	    "TO2.DeviceServiceInfoReady: Failed to "
+			// 	    "refresh OV HMAC Key\n");
+			// 	goto err;
+			// }
 			hmac = fdo_new_ov_hdr_sign(ps->dev_cred, ps->osc,
 						   ps->ovoucher->hdc);
 			if (!hmac) {
