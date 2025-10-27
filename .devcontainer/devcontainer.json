@@ -1,6 +1,6 @@
 {
 	"name": "wamm_sdk_devcontainer",
-	"image": "clb/wamm_sdk:latest",
+	"build": { "dockerfile": "Dockerfile" },
 	"containerEnv": {
 		"OPENSSL3_ROOT": "/usr",
 		"CURL_ROOT": "/usr",
