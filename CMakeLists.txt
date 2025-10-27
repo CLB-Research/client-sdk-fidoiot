@@ -6,7 +6,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 project(client_sdk)
-set(BASE_DIR $ENV{PWD})
+set(BASE_DIR ${CMAKE_SOURCE_DIR})
 
 #set(CMAKE_VERBOSE_MAKEFILE ON)
 
