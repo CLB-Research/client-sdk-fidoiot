@@ -1,5 +1,5 @@
 export TPM2TOOLS_TCTI="tabrmd"
-export OPENSSL3_BIN=/opt/openssl/bin
+export OPENSSL3_BIN=/usr/bin
 
 TPM_PUB_KEY_FILE_INSIDE_DATA_DIR="tpm_ecdsa_pub.key"
 TPM_PRIV_KEY_FILE_INSIDE_DATA_DIR="tpm_ecdsa_priv.key"
